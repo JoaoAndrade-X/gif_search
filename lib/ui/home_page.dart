@@ -2,6 +2,7 @@ import 'dart:async';
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
+import 'package:gif_search/ui/gif_page.dart';
 import 'package:http/http.dart' as http;
 
 class HomePage extends StatefulWidget {
@@ -52,12 +53,13 @@ class _HomePageState extends State<HomePage> {
             padding: EdgeInsets.all(10.0),
             child: TextField(
               decoration: InputDecoration(
-                  labelText: "Search",
-                  labelStyle: TextStyle(color: Colors.white),
-                  border: OutlineInputBorder(),
-                  enabledBorder: OutlineInputBorder(
-                    borderSide: BorderSide(color: Colors.white),
-                  )),
+                labelText: "Search",
+                labelStyle: TextStyle(color: Colors.white),
+                border: OutlineInputBorder(),
+                enabledBorder: OutlineInputBorder(
+                  borderSide: BorderSide(color: Colors.white),
+                ),
+              ),
               style: TextStyle(
                 color: Colors.white,
                 fontSize: 18.0,
@@ -126,6 +128,12 @@ class _HomePageState extends State<HomePage> {
               height: 300.0,
               fit: BoxFit.cover,
             ),
+            onTap: () {
+              Navigator.push(
+                  context, 
+                  MaterialPageRoute(builder:(context) => GifPage(snapshot.data["data"][index]))
+              );
+            },
           );
         } else {
           return Container(
